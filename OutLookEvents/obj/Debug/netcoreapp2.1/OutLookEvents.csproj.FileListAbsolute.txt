@@ -1,0 +1,36 @@
+E:\Projects\VisitorManagement\OutLookEvents\bin\Debug\netcoreapp2.1\OutLookEvents.deps.json
+E:\Projects\VisitorManagement\OutLookEvents\bin\Debug\netcoreapp2.1\OutLookEvents.dll
+E:\Projects\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.csprojAssemblyReference.cache
+E:\Projects\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.csproj.CoreCompileInputs.cache
+E:\Projects\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.AssemblyInfoInputs.cache
+E:\Projects\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.AssemblyInfo.cs
+E:\Projects\VisitorManagement\OutLookEvents\bin\Debug\netcoreapp2.1\OutLookEvents.pdb
+E:\Projects\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.dll
+E:\Projects\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.pdb
+D:\Projects\VisitorManagement\OutLookEvents\bin\Debug\netcoreapp2.1\OutLookEvents.deps.json
+D:\Projects\VisitorManagement\OutLookEvents\bin\Debug\netcoreapp2.1\OutLookEvents.dll
+D:\Projects\VisitorManagement\OutLookEvents\bin\Debug\netcoreapp2.1\OutLookEvents.pdb
+D:\Projects\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.csproj.CoreCompileInputs.cache
+D:\Projects\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.AssemblyInfoInputs.cache
+D:\Projects\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.AssemblyInfo.cs
+D:\Projects\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.dll
+D:\Projects\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.pdb
+D:\Internal Project\VisitorManagement\OutLookEvents\bin\Debug\netcoreapp2.1\OutLookEvents.deps.json
+D:\Internal Project\VisitorManagement\OutLookEvents\bin\Debug\netcoreapp2.1\OutLookEvents.dll
+D:\Internal Project\VisitorManagement\OutLookEvents\bin\Debug\netcoreapp2.1\OutLookEvents.pdb
+D:\Internal Project\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.csprojAssemblyReference.cache
+D:\Internal Project\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.csproj.CoreCompileInputs.cache
+D:\Internal Project\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.AssemblyInfoInputs.cache
+D:\Internal Project\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.AssemblyInfo.cs
+D:\Internal Project\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.dll
+D:\Internal Project\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.pdb
+D:\BackUp\VisitorManagement\OutLookEvents\bin\Debug\netcoreapp2.1\OutLookEvents.deps.json
+D:\BackUp\VisitorManagement\OutLookEvents\bin\Debug\netcoreapp2.1\OutLookEvents.dll
+D:\BackUp\VisitorManagement\OutLookEvents\bin\Debug\netcoreapp2.1\OutLookEvents.pdb
+D:\BackUp\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.csprojAssemblyReference.cache
+D:\BackUp\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.csproj.CoreCompileInputs.cache
+D:\BackUp\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.AssemblyInfoInputs.cache
+D:\BackUp\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.AssemblyInfo.cs
+D:\BackUp\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.dll
+D:\BackUp\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.pdb
+D:\Projects\VisitorManagement\OutLookEvents\obj\Debug\netcoreapp2.1\OutLookEvents.csprojAssemblyReference.cache
