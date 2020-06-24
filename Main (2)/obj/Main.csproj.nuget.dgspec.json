@@ -1,0 +1,270 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\BackUp\\VisitorManagement\\Main\\Main.csproj": {}
+  },
+  "projects": {
+    "D:\\BackUp\\VisitorManagement\\Main\\Main.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\BackUp\\VisitorManagement\\Main\\Main.csproj",
+        "projectName": "Main",
+        "projectPath": "D:\\BackUp\\VisitorManagement\\Main\\Main.csproj",
+        "packagesPath": "C:\\Users\\thanushrees\\.nuget\\packages\\",
+        "outputPath": "D:\\BackUp\\VisitorManagement\\Main\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\thanushrees\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {
+              "D:\\BackUp\\VisitorManagement\\VisitorManagement.DataAccess\\VisitorManagement.DataAccess.csproj": {
+                "projectPath": "D:\\BackUp\\VisitorManagement\\VisitorManagement.DataAccess\\VisitorManagement.DataAccess.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "DotNetCore.NPOI": {
+              "target": "Package",
+              "version": "[1.2.2, )"
+            },
+            "Microsoft.AspNetCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.1, )",
+              "autoReferenced": true
+            },
+            "Microsoft.AspNetCore.Http.Extensions": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Microsoft.AspNetCore.Razor.Design": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Microsoft.NETCore.App": {
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.Office.Interop.Outlook": {
+              "target": "Package",
+              "version": "[15.0.4797.1003, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[2.1.9, )"
+            },
+            "NPOI": {
+              "target": "Package",
+              "version": "[2.5.1, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[106.11.4, )"
+            },
+            "System.Web.Helpers.Crypto": {
+              "target": "Package",
+              "version": "[3.2.3, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "D:\\BackUp\\VisitorManagement\\OutLookEvents\\OutLookEvents.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\BackUp\\VisitorManagement\\OutLookEvents\\OutLookEvents.csproj",
+        "projectName": "OutLookEvents",
+        "projectPath": "D:\\BackUp\\VisitorManagement\\OutLookEvents\\OutLookEvents.csproj",
+        "packagesPath": "C:\\Users\\thanushrees\\.nuget\\packages\\",
+        "outputPath": "D:\\BackUp\\VisitorManagement\\OutLookEvents\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\thanushrees\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.Office.Interop.Outlook": {
+              "target": "Package",
+              "version": "[15.0.4797.1003, )"
+            },
+            "OpenCVSharp": {
+              "target": "Package",
+              "version": "[2.4.0.1, )"
+            },
+            "jQuery-datetimepicker": {
+              "target": "Package",
+              "version": "[2.4.5, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "D:\\BackUp\\VisitorManagement\\VisitorManagement.DataAccess\\VisitorManagement.DataAccess.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\BackUp\\VisitorManagement\\VisitorManagement.DataAccess\\VisitorManagement.DataAccess.csproj",
+        "projectName": "VisitorManagement.DataAccess",
+        "projectPath": "D:\\BackUp\\VisitorManagement\\VisitorManagement.DataAccess\\VisitorManagement.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\thanushrees\\.nuget\\packages\\",
+        "outputPath": "D:\\BackUp\\VisitorManagement\\VisitorManagement.DataAccess\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\thanushrees\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {
+              "D:\\BackUp\\VisitorManagement\\OutLookEvents\\OutLookEvents.csproj": {
+                "projectPath": "D:\\BackUp\\VisitorManagement\\OutLookEvents\\OutLookEvents.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.AspNetCore.App": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Microsoft.AspNetCore.Http.Extensions": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.Office.Interop.Outlook": {
+              "target": "Package",
+              "version": "[15.0.4797.1003, )"
+            },
+            "NPOI": {
+              "target": "Package",
+              "version": "[2.5.1, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

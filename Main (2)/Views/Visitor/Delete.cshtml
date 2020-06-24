@@ -1,0 +1,95 @@
+﻿@model VisitorManagement.DataAccess.ViewModel.VisitViewModel;
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "_Layout";
+}
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcomb-list">
+                    <div class="breadcomb-wp">
+                        <div class="breadcomb-icon">
+                            <i class="fa fa-trash fa-3x"></i>
+                        </div>
+                        <div class="breadcomb-ctn"> </div>
+                        <div><h2 style="color:mediumseagreen"> &nbsp; Delete visitor </h2> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-content">
+    <div class="breadcomb-area">
+        <div class="container">
+            <div class="row">
+                <div class="breadcomb-list">
+                    <div class="modal-body">
+                        <div class="row col-md-12 mg-t-30 ">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-4 row">
+                                <div class="font-style"><label>VisitorName: &nbsp;</label></div>
+                                <div class="font-style1">@Model.VisitorName</div>
+                            </div>
+                            <div class="col-md-4 row">
+                                <div class="font-style"><label>Designation: &nbsp;</label></div>
+                                <div class="font-style1">@Model.Designation</div>
+                            </div>
+                            <div class="col-md-2 row">
+                                <div class="font-style"><label>VisitorCompany: &nbsp;</label></div>
+                                <div class="font-style1">@Model.Company</div>
+                            </div>
+                        </div>
+                        <div class="row col-md-12 mg-t-30">
+                      
+                           
+                            <div class="col-md-2 row">
+                                <div class="font-style"><label>MeetingStartTime: &nbsp;</label></div>
+                                <div class="font-style1">@Model.StartTime</div>
+                            </div>
+                        </div>
+                        <div class="row col-md-12 mg-t-30">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-4 row">
+                                <div class="font-style"><label>MeetingEndTime: &nbsp;</label></div>
+                                <div class="font-style1">@Model.EndTime</div>
+                            </div>
+                          
+                           
+                        </div>
+                       
+                      
+                        </div>
+                    </div>
+                    <div class="modal-footer mg-t-15">
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for="visitDetails.VisitDetailId" />
+                            <div class="col-xs-offset-2">
+                                @*<div class="dialog-inner mg-t-30">
+                                    <div class="dialog-pro dialog ">*@
+                                <button type="submit" class="btn btn-danger notika-btn-danger" onclick="myFunction()"><i class="fa fa-trash-o fa-lg"></i>&nbsp; &nbsp; Delete Visitor</button>
+                                <p id="demo"></p>
+                            </div>
+                            @*</div>
+                                </div>*@
+                        </form>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    function myFunction() {
+        var txt;
+        if (confirm("Are you sure you want to delete?")) {
+            txt = "Deleted successfully";
+        } else {
+            txt = "You pressed Cancel!";
+        }
+        document.getElementById("demo").innerHTML = txt;
+    }
+</script>
+

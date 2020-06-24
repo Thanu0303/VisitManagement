@@ -1,0 +1,182 @@
+﻿@model VisitorManagement.DataAccess.ViewModel.DashBoardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_Layout";
+}
+
+<style>
+    #mybarChart1 {
+        width: 500px;
+        height: 333px;
+    }
+</style>
+<div class="right_col" role="main">
+    <div class="row" style="display: inline-block;">
+        <div class="tile_count">
+            <div class="col-md-2 col-sm-2  tile_stats_count" style="width:500px;">
+                <span class="count_top" style="font-size: 15px"><i class="fa fa-user"></i><b> Total Visits </b></span>
+                <div class="count" style="width:30%">@Model.visits_count </div>
+            </div>
+            <div class="col-md-2 col-sm-2  tile_stats_count" style="width:500px;">
+                <span class="count_top" style="font-size: 15px"><i class="fa fa-users"></i> <b> Total Employees </b></span>
+                <div class="count" style="width:30%">@Model.employees_count</div>
+            </div>
+            <div class="col-md-2 col-sm-2  tile_stats_count" style="width:500px;">
+                <span class="count_top" style="font-size: 15px"><i class="fa fa-clock-o"></i> <b> Upcoming Visits </b></span>
+                <div class="count green" style="width:30%">@Model.upComingVisits_count</div>
+            </div>
+            <div class="col-md-2 col-sm-2  tile_stats_count" style="width:500px;">
+                <span class="count_top" style="font-size: 15px"><i class="fa fa-clock-o"></i> <b> Completed Visits </b></span>
+                <div class="count green" style="width:30%">@Model.completedVisits_count</div>
+            </div>
+            <div class="col-md-2 col-sm-2  tile_stats_count" style="width:500px;">
+                <span class="count_top" style="font-size: 15px"><i class="fa fa-calendar"></i> <b> This Week Visits </b> </span>
+                <div class="count green" style="width:30%">@Model.perweekvisits_count</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- pie chart -->
+    <div class="row" style="margin-top:2%;">
+        <div class="col-md-6 col-sm-4">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Pie Chart Representation</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div id="echart_pie1" style="height:300px;"></div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- /pie chart -->
+        <div class="col-md-6 col-sm-4">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Bar Chart Representation</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <canvas id="mybarChart1"  width="1066" height="650" style="width: 300px;height: 322px!important;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ECharts -->
+
+<script src="~/vendors/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+       
+         if ($('#echart_pie1').length) {
+        var echartPie = echarts.init(document.getElementById('echart_pie1'));
+         echartPie.setOption({
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c}"
+            },
+            legend: {
+                x: 'center',
+                y: 'bottom',
+                data: ['Total Visits', 'Total Users', 'Upcoming Visits', 'Completed Visits', 'This Week Visits']
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    magicType: {
+                        show: true,
+                        type: ['pie', 'funnel'],
+                        option: {
+                            funnel: {
+                                x: '25%',
+                                width: '50%',
+                                funnelAlign: 'left',
+                                max: 1548
+                            }
+                        }
+                    },
+                }
+            },
+            calculable: true,
+            series: [{
+                name: '',
+                type: 'pie',
+                radius: '65%',
+                center: ['50%', '45%'],
+                data: [{
+                    value: @Model.visits_count,
+                    name: 'Total Visits'
+                }, {
+                    value: @Model.employees_count,
+                    name: 'Total Users'
+                }, {
+                    value: @Model.upComingVisits_count,
+                    name: 'Upcoming Visits'
+                }, {
+                    value: @Model.completedVisits_count,
+                    name: 'Completed Visits'
+                }, {
+                    value: @Model.perweekvisits_count,
+                    name: 'This Week Visits'
+                }]
+            }]
+        });
+
+        var dataStyle = {
+            normal: {
+                label: {
+                    show: false
+                },
+                labelLine: {
+                    show: false
+                }
+            }
+        };
+
+        var placeHolderStyle = {
+            normal: {
+                color: 'rgba(0,0,0,0)',
+                label: {
+                    show: false
+                },
+                labelLine: {
+                    show: false
+                }
+            },
+            emphasis: {
+                color: 'rgba(0,0,0,0)'
+            }
+        };
+
+    }
+
+        var ctx = document.getElementById("mybarChart1");
+        var mybarChart = new Chart(ctx, {
+            name: 'visits',
+            type: 'bar',
+            data: {
+                labels: ["Total Visits", "Total Users", "Upcoming Visits", "Completed Visits", "This Week Visits"],
+                datasets: [{
+                    label: 'Visits Usage',
+                    backgroundColor: "#03586A",
+                    data: [@Model.visits_count, @Model.employees_count, @Model.upComingVisits_count, @Model.completedVisits_count, @Model.perweekvisits_count]
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    });
+</script>

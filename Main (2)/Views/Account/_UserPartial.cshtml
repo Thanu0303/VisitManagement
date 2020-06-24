@@ -1,0 +1,144 @@
+﻿@model VisitorManagement.DataAccess.Models.User
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2> <i class="fa fa-user-plus fa-1x"></i> Edit User</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a class="dropdown-item" href="#">Settings 1</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form asp-action="CreateUser" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="UserID" />
+
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="UserLogin">
+                                    User Login <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="email" asp-for="UserLogin" name="UserLogin" required="required" class="form-control ">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="FirstName">
+                                    FirstName <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="FirstName" id="first-name" required="required" class="form-control ">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="LastName">
+                                    LastName <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="LastName" required="required" class="form-control ">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" style="height:40px;" asp-for="EmailAddress">
+                                    EmailAddress <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="email" asp-for="EmailAddress" name="EmailAddress" required="required" class="form-control ">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-left:28%">
+                                <div class="item form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input asp-for="IsAdmin" class="flat" checked="checked" /> @Html.DisplayNameFor(model => model.IsAdmin)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="item form-group" style="margin-left:25%">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input asp-for="IsInactive" class="flat" /> @Html.DisplayNameFor(model => model.IsInactive)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="CreatedBy">
+                                    CreatedBy <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="CreatedBy" id="first-name" required="required" class="form-control ">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="CreatedDate">
+                                    CreatedDate <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="date" asp-for="CreatedDate" value="@DateTime.Now" id="first-name" required="required" class="form-control ">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="ModifiedBy">
+                                    ModifiedBy <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="ModifiedBy" id="first-name" required="required" class="form-control ">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="ModifiedDate">
+                                    ModifiedDate <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="date" asp-for="ModifiedDate" value="@DateTime.Now" id="first-name" required="required" class="form-control ">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="Password">
+                                    Password <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="Password" id="first-name" required="required" class="form-control ">
+                                </div>
+                            </div>
+                            @*<div class="ln_solid"></div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-3">
+                                    <button class="btn btn-primary" type="button">Cancel</button>
+                                    <button class="btn btn-primary" type="reset">Reset</button>
+                                    <button type="submit" class="btn btn-success">Edit</button>
+                                </div>
+                            </div>*@
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

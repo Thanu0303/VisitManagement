@@ -1,0 +1,264 @@
+﻿@model VisitorManagement.DataAccess.ViewModel.ViewVisitorModel;
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout";
+}
+
+<head>
+    <!-- Bootstrap -->
+    <link href="~/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="~/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="~/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="~/build/css/custom.min.css" rel="stylesheet">
+</head>
+
+
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+
+            <h2 style="font-size:25px;margin-left:10px;"><strong> Visit Details </strong></h2>
+            <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel">
+                    <div class="x_title">
+
+
+                        <div>
+                            <div>
+
+                                <div>
+
+                                    @{string photo = "data: image/jpeg;base64," + Model.visit.PhotoUrl;}
+                                    <img style="width:100px;height:100px;border-radius:20px; margin-left:43%;" src="@photo" />
+                                    <div class="x_content">
+                                        <table class="table">
+
+                                            <tr class="col-offset-4 " style="background-color:rgba(52,73,94,0.94); color:white; font-size:18px;">
+                                                <td class=" headings ">
+                                                    Visitor Info
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+
+                                                <td></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><b>Visitor Name</b></td>
+                                                <td>@Model.visit.VisitorName </td>
+                                                <td><b>Designation</b></td>
+                                                <td>@Model.visit.Designation</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>Company</b></td>
+                                                <td>@Model.visit.Company</td>
+                                                <td><b>Email</b></td>
+                                                <td> @Model.visit.EmailAddress</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Phone</b></td>
+                                                <td>@Model.visit.Phone</td>
+                                                <td><b>Create Date</b></td>
+                                                <td>@Model.visit.CreatedDate</td>
+                                            </tr>
+
+
+                                        </table>
+
+                                    </div>
+                                    <br />
+                                    <br />
+                                </div>
+                            </div>
+
+
+
+                            <div>
+                                <div>
+
+                                    <div class="body">
+
+
+                                        <table class="table ">
+                                            <tr class="col-1-offset-4" style="background-color:rgba(52,73,94,0.94); color:white;  font-size:18px;">
+                                                <td class=" headings ">
+                                                    Visit Details
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>Start Time </b></td>
+                                                <td> @string.Format("{0:hh:mm tt}", Model.detail.StartTime)</td>
+                                                <td><b>End Time</b></td>
+                                                <td> @string.Format("{0:hh:mm tt}", Model.detail.EndTime)</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>Actual Time In</b></td>
+                                                <td>
+                                                    @if (Model.detail.ActualTimeIn == null)
+                                                    {
+                                                        @string.Format("--:--")
+
+                                                    }
+                                                    else
+                                                    {
+                                                        @string.Format("{0:hh:mm tt}", Model.detail.ActualTimeIn)
+                                                    }
+                                                </td>
+
+
+                                                <td><b>Actual Time Out</b></td>
+                                                <td>
+                                                    @if (Model.detail.ActualTimeIn == null)
+                                                    {
+                                                        @string.Format("--:--")
+
+                                                    }
+                                                    else
+                                                    {
+                                                        @string.Format("{0:hh:mm tt}", Model.detail.ActualTimeOut)
+                                                    }
+
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </div>
+                                    <br />
+                                    <br />
+                                </div>
+                            </div>
+
+
+                            @if (Model.participant != null)
+                            {
+
+                                <div>
+                                    <div>
+
+                                        <div class="body">
+
+
+                                            <table class="table">
+
+                                                <tr class="col-offset-4" style="background-color:rgba(52,73,94,0.94); color:white; font-size:18px;">
+                                                    <td class=" headings ">
+                                                        Visit Arrangement
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Name </th>
+                                                    <th>Description</th>
+                                                    <th>Delegate Name</th>
+                                                </tr>
+                                                @for (int i = 0; i < Model.arrangementsList.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td>@Model.arrangementsList[i].Name</td>
+                                                        <td>@Model.VisitArrangementsList[i].Description</td>
+                                                        <td title="@Model.VisitArrangementsList[i].EmailAddress">@Model.VisitArrangementsList[i].FirstName  @Model.VisitArrangementsList[i].LastName</td>
+
+                                                    </tr>
+                                                }
+                                            </table>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                                <br />
+                                <br />
+
+                                <div>
+                                    <div>
+
+                                        <div class="body">
+
+                                            <table class="table ">
+                                                <tr class="col-offset-4" style="background-color:rgba(52,73,94,0.94); color:white; font-size:18px;">
+                                                    <td class=" headings ">
+                                                        Contact Details
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Participant Name </th>
+                                                    <th>Type</th>
+                                                </tr>
+                                                @for (int i = 0; i < Model.participant.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td title="@Model.participant[i].EmailAddress">@Model.participant[i].FirstName @Model.participant[i].LastName</td>
+                                                        @if (Model.participant[i].IsPrimary == true)
+                                                        {
+                                                            <td>Primary Contact</td>
+                                                        }
+                                                        @if (Model.participant[i].IsPrimary == false)
+                                                        {
+                                                            <td>Secondary Contact</td>
+                                                        }
+                                                    </tr>
+                                                }
+                                            </table>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                            }
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer mg-t-30">
+                    <div>
+                        <a asp-action="Index" class="fa fa-arrow-left" style="font-size:40Px">
+
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+           
+
+        </div>
+        
+    </div>
+
+   
+</div>
+   
+           
+
+
+            <!-- jQuery -->
+            <script src="~/vendors/jquery/dist/jquery.min.js"></script>
+            <!-- Bootstrap -->
+            <script src="~/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+            <!-- FastClick -->
+            <script src="~/vendors/fastclick/lib/fastclick.js"></script>
+            <!-- NProgress -->
+            <script src="~/vendors/nprogress/nprogress.js"></script>
+            <!-- iCheck -->
+            <script src="~/vendors/iCheck/icheck.min.js"></script>
+            <!-- Custom Theme Scripts -->
+            <script src="~/build/js/custom.min.js"></script>

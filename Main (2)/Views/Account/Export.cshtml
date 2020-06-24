@@ -1,0 +1,100 @@
+﻿@{
+    ViewData["Title"] = "Export Page";
+}
+
+@Html.AntiForgeryToken()
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js">
+</script>
+<script type="text/javascript">
+    $(function () {
+        debugger;
+        $('#btnupload').on('click', function () {
+            var fileExtension = ['xls', 'xlsx'];
+            var filename = $('#fileupload').val();
+            if (filename.length == 0) {
+                alert("Please select a file.");
+                return false;
+            }
+            else {
+                var extension = filename.replace(/^.*\./, '');
+                if ($.inArray(extension, fileExtension) == -1) {
+                    alert("Please select only excel files.");
+                    return false;
+                }
+            }
+            var fdata = new FormData();
+            var fileUpload = $("#fileupload").get(0);
+            var files = fileUpload.files;
+            fdata.append(files[0].name, files[0]);
+            $.ajax({
+                type: "POST",
+                url: "/Account/OnPostSaveExcel",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("XSRF-TOKEN",
+                        $('input:hidden[name="__RequestVerificationToken"]').val());
+                },
+                data: fdata,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response) {
+                        $('#divPrint').html(response.FailedUsers + " <br />   " );
+                        $('#divSuccessCount').html(response.successcount);
+                        $('#divFailureCount').html( response.failurecount);
+                    }
+                    // alert('Some error occured while uploading');
+                    //else {
+                    //    alert('Uploaded successfully ... !!');
+                    //  //  $('#divPrint').html(response);
+                    //}
+                },
+                error: function (e) {
+                    $('#divPrint').html(e.responseText);
+                }
+            });
+        })
+        $('#btnExport').on('click', function () {
+            var fileExtension = ['xls', 'xlsx'];
+            var filename = $('#fileupload').val();
+            if (filename.length == 0) {
+                alert("Please select a file then Import");
+                return false;
+            }
+        });
+    });
+
+</script>
+
+<div class="right_col" role="main">
+    <div class="">
+        <form method="post" asp-controller="Account" asp-action="ImportExcel">
+            <div class="container" style="margin-top:10%">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="file" id="fileupload" name="files" class="form-control" />
+                    </div>
+                    <div class="col-md-3">
+                        <input type="button" name="Upload" value="Upload" id="btnupload" class="btn btn-dark" />
+                        <a href="@Url.Action("Download", "Account")">Get Template Here</a>
+                    </div>
+                    <br /><br /><br />                  
+                </div>
+                <div class="clearfix">&nbsp;</div>
+                <div class="row">
+                    <div id="divSuccessCount" class="text-success"></div>
+                </div>
+                <div class="row">
+
+                    <div id="divFailureCount" class="text-danger"></div>
+                </div>
+                <div class="row">
+                    <div id="divPrint" class="text-danger"></div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+

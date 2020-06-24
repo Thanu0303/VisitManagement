@@ -1,0 +1,834 @@
+﻿@model VisitorManagement.DataAccess.ViewModel.VisitViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Layout";
+}
+
+
+<style>
+    #VisitArrangement .select2-selection--single {
+        /*width: 285px !important;
+        margin-left: 109px !important;*/
+        width: 242px !important;
+        margin-left: 10px !important;
+    }
+    /*#VisitArrangement .select2-selection__arrow b {
+        margin-left: 70px !important;
+        border-top: 10px solid #999 !important;
+        border-left: 5px solid transparent !important;
+        border-right: 5px solid transparent !important;
+        top: 15px !important;
+    }*/
+    /*.select2-dropdown.select2-dropdown--below {
+        width: 285px!important;
+        margin-left: 109px;
+    }*/
+
+    .visitArrangements {
+        /*margin-left: -65px;*/
+        width: 73% !important;
+    }
+
+    .name{
+        font-size:17px;
+    }
+</style>
+
+@*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+<script src="~/vendors/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+
+        $("[id*=arrangmentsdescription]").change(function () {
+            //debugger;
+            var id = $(this).closest("tr")[0].id.split('_')[1];
+            var des = $(this).val();
+            $("#txtarrangdesc_" + id).val(des);
+
+        });
+
+        $("[id*=delegateContactID]").change(function () {
+            //debugger;
+            var id = $(this).closest("tr")[0].id.split('_')[1];
+            var des = $(this).val();
+            $("#ddldelegatearrangid_" + id).val(des);
+
+        });
+
+        $("[id*=chkHeader]").bind("click", function () {
+            var chkHeader = $(this);
+            var grid = $(this).closest("table");
+            $("td", grid).find("input[type=checkbox]").each(function () {
+                var id = $(this).closest("tr")[0].id.split('_')[1];
+                if (chkHeader.is(":checked")) {
+                    $(this).attr("checked", "checked");
+                    var td = $("td", $(this).closest("tr"));
+                    td.css({ "background-color": "#D8EBF2" });
+                    $("input[type=text]", td).removeAttr("disabled");
+                    $("#delegateContactID", td).removeAttr("disabled");
+                    //debugger;
+                    $("#finaltr_" + id).show();
+                    $("#chkarrangment_" + id).prop('checked', true);
+                } else {
+                    $(this).removeAttr("checked");
+                    var td = $("td", $(this).closest("tr"));
+                    td.css({ "background-color": "#FFF" });
+                    $("input[type=text]", td).attr("disabled", "disabled");
+                    $("#delegateContactID", td).attr("disabled", "disabled");
+                    $("#chkarrangment_" + id).prop('checked', false);
+                    $("#txtarrangdesc_" + id).val("");
+                    //debugger;
+                    $("#finaltr_" + id).hide();
+                }
+            });
+        });
+
+        $("[id*=isSelected]").bind("click", function () {
+            //debugger;
+            var id = $(this).closest("tr")[0].id.split('_')[1];
+            var grid = $(this).closest("table");
+            var chkHeader = $("[id*=chkHeader]", grid);
+            if ($(this).is(":checked")) {
+                var td = $("td", $(this).closest("tr"));
+                td.css({ "background-color": "#D8EBF2" });
+                $("input[type=text]", td).removeAttr("disabled");
+                $("#delegateContactID", td).removeAttr("disabled");
+                //debugger;
+                $("#finaltr_" + id).show();
+                $("#chkarrangment_" + id).prop('checked', true);
+            } else {
+                var td = $("td", $(this).closest("tr"));
+                td.css({ "background-color": "#FFF" });
+                $("input[type=text]", td).attr("disabled", "disabled");
+                $("#delegateContactID", td).attr("disabled", "disabled");
+                $("#chkarrangment_" + id).prop('checked', false);
+                $("#txtarrangdesc_" + id).val("");
+                //debugger;
+                $("#finaltr_" + id).hide();
+            }
+            if ($("[id*=isSelected]", grid).length == $("[id*=isSelected]:checked", grid).length) {
+                chkHeader.attr("checked", "checked");
+            } else {
+                chkHeader.removeAttr("checked");
+            }
+        });
+    });
+
+</script>
+
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Edit Visit</h3>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+
+                    <div class="x_content">
+                        <form asp-action="Edit" method="Post">
+                            @Html.HiddenFor(m => m.visitDetails.VisitDetailId)
+                            @Html.HiddenFor(m => m.visit.VisitorId)
+
+                            <div id="wizard" class="form_wizard wizard_horizontal">
+                                <ul class="wizard_steps">
+                                    <li>
+                                        <a href="#step-1">
+                                            <span class="step_no">1</span>
+                                            <span class="step_descr">
+                                                Visitor Details<br />
+
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-2">
+                                            <span class="step_no">2</span>
+                                            <span class="step_descr">
+                                                Details<br />
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-3">
+                                            <span class="step_no">3</span>
+                                            <span class="step_descr">
+                                                Participant Details<br />
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-4">
+                                            <span class="step_no">4</span>
+                                            <span class="step_descr">
+                                                Arrangements<br />
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-5">
+                                            <span class="step_no">5</span>
+                                            <span class="step_descr">
+                                                Confirmation<br />
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div id="step-1">
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="visitorName">
+                                            Visitor Name <span id="vn" class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 ">
+                                            <input asp-for="VisitorName" onchange="validate();" name="VisitorName" id="visitorName" value="@Model.visit.VisitorName" class="form-control required" />
+                                            <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                                        </div>
+
+                                        <div class=" col-md-9 col-sm-6">
+                                            <label id="ValvisitorName" class="text-danger" style="display:none;margin-left:35%">* This field is required</label>
+                                            <label id="nameValidate" class="text-danger" style="display:none;margin-left:35%">* Please enter a valid Name</label>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
+                                            Email Address <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 ">
+                                            <input asp-for="EmailAddress" onchange="validate();" name="EmailAddress" id="emailAddress" value="@Model.visit.EmailAddress" class="form-control  required" />
+                                            <span class="fa fa-envelope form-control-feedback right" aria-hidden="true"></span>
+                                        </div>
+
+                                        <div class=" col-md-9 col-sm-6">
+                                            <label id="ValemailAddress" class="text-danger" style="display:none;margin-left:35%">* This field is required</label>
+                                            <label id="emailValidate" class="text-danger" style="display:none;margin-left:35%">* Please enter a valid Email Address</label>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                                            Phone <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 ">
+                                            <input asp-for="Phone" id="phone" onchange="validate();" name="phone" value="@Model.visit.Phone" class="form-control   required" />
+                                            <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
+                                        </div>
+
+                                        <div class=" col-md-9 col-sm-6">
+                                            <label id="Valphone" class="text-danger" style="display:none;margin-left:35%">* This field is required</label>
+                                            <label id="phoneValidate" class="text-danger" style="display:none;margin-left:35%">* Please enter a valid Phone Number</label>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">
+                                            Company <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 ">
+                                            <input asp-for="Company" name="Company" onchange="validate();" value="@Model.visit.Company" class="form-control  required" id="company" />
+                                            <span asp-validation-for="Company" class="fa fa-building form-control-feedback right" />
+                                        </div>
+
+                                        <div class=" col-md-9 col-sm-6">
+                                            <label id="Valcompany" class="text-danger" style="display:none;margin-left:35%">* This field is required</label>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">
+                                            Designation <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 ">
+                                            <input asp-for="Designation" onchange="validate();" name="Designation" value="@Model.visit.Designation" id="designation" class="form-control  required" />
+                                            <span asp-validation-for="Designation" class="fa fa-align-justify form-control-feedback right" />
+                                            @*<span asp-validation-for="Designation" class="text-danger" />*@
+                                        </div>
+
+                                        <div class=" col-md-9 col-sm-6">
+                                            <label id="Valdesignation" class="text-danger" style="display:none;margin-left:35%">* This field is required</label>
+                                        </div>
+
+                                    </div>
+                                    @*</form>*@
+                                </div>
+
+                                <div id="step-2">
+                                    @*<form class="form-horizontal form-label-left">*@
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                                            Visiting Date <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 ">
+                                            <input type="date" id="visitingDate" value="@Model.visitDetails.StartTime.Date.ToString("yyyy-MM-dd")" asp-for="VisitingDate" class="form-control" />
+                                            <span asp-validation-for="VisitingDate" class="text-danger" />
+                                        </div>
+
+                                        <div class=" col-md-9 col-sm-6">
+                                            <label id="ValvisitingDate" class="text-danger" style="display:none;margin-left:35%">* This field is required</label>
+                                            <label id="dateValidate" class="text-danger" style="display:none;margin-left:35%">* Visiting date should be greater than or equal to Today's Date</label>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
+                                            Start Time <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 ">
+                                            <input id="startTime" onchange="start();" name="StartTime" value="@Model.visitDetails.StartTime.ToShortTimeString()" asp-for="StartTime" class="form-control" />
+                                            <span asp-validation-for="StartTime" class="text-danger" />
+                                            @*<span asp-validation-for="StartTime" class="text-danger" />*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                                            End Time <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 ">
+                                            <input id="endTime" name="EndTime" value="@Model.visitDetails.EndTime.ToShortTimeString()" asp-for="EndTime" class="form-control" />
+                                            <span asp-validation-for="EndTime" class="text-danger" />
+                                            @*<span asp-validation-for="EndTime" class="text-danger" />*@
+                                        </div>
+                                    </div>
+                                    @*</form>*@
+                                </div>
+
+                                <div id="step-3">
+                                    @if (Model != null)
+                                    {
+                                        @*<div class="form-group row">
+                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
+                    Primary Contact
+                </label>
+                <div class="col-md-5 col-sm-5 ">
+                    <select id="ddlprimaryContact" class="form-control" asp-for="PrimaryParticipant"
+                            data-live-search="true">
+                        @foreach (var itemUser in Model.Users)
+                        {
+                            <option class="col-xs-offset-3" name="PrimaryParticipant.ParticipantId" value="@itemUser.UserId">@itemUser.FirstName </option>
+                        }
+                    </select>
+                </div>
+            </div>*@
+                                        @*<div class="form-group row">
+                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
+                    Primary Contact
+                </label>
+                <select id="selUser" style="width:200px;" class="form-control" asp-for="PrimaryParticipant"
+                        data-live-search="true">
+                    @foreach (var itemUser in Model.Users)
+                    {
+                        <option class="col-xs-offset-3" name="PrimaryParticipant.ParticipantId" value="@itemUser.UserId">@itemUser.FirstName </option>
+                    }
+                </select>
+                <br />
+                <div id='result'></div>
+            </div>*@
+
+
+
+                                        <div class="form-group row dropdown-sin-2">
+                                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name" style="margin-left:1%">
+                                                Primary Contact <span class="required"></span>
+                                            </label>
+                                            <select id="ddlprimaryContact" style="display:none" asp-for="PrimaryParticipant" data-live-search="true">
+                                                @foreach (var itemUser in Model.Users)
+                                                {
+                                                    <option class="col-xs-offset-7" name="PrimaryParticipant.ParticipantId" value="@itemUser.UserId">@itemUser.FirstName </option>
+                                                }
+                                            </select>
+                                        </div>
+
+                                        @*<div class="form-group row dropdown-sin-2">
+                                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name" style="margin-left:1%">
+                                                Primary Contact <span class="required"></span>
+                                            </label>
+
+                                            <select style="display:none" name="" multiple asp-for="PrimaryParticipant" id="ddlprimaryContact" class="form-control" data-live-search="true">
+                                                @foreach (var itemUser in Model.Users)
+                                                {
+                                                    <option class="col-xs-offset-3" name="PrimaryParticipant.ParticipantId" value="@itemUser.UserId">@itemUser.FirstName </option>
+                                                }
+                                            </select>
+                                            @Html.Hidden("SecondaryValues")
+                                        </div>*@
+
+
+
+                                        @*<div class="form-group row">
+                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name" style="margin-left:1%">
+                    Secondary Contact <span class="required">*</span>
+                </label>
+                <select name="multicheckbox[]" id="ddlsecondaryContact" asp-for="SecondaryParticipant" class="4colactive" value="@Model.SecondaryParticipant" data-live-search="true" multiple="multiple">
+                    @foreach (var itemUser in Model.Users)
+                    {
+                        <option class="col-xs-offset-3" name="SecondaryParticipant" value="@itemUser.UserId">@itemUser.FirstName</option>
+                    }
+                </select>
+            </div>*@
+
+
+
+
+                                        <div class="form-group row dropdown-sin-2">
+                                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name" style="margin-left:1%">
+                                                Secondary Contact <span class="required"></span>
+                                            </label>
+
+                                            <select style="display:none" name="" multiple asp-for="SecondaryParticipant" id="ddlsecondaryContact" class="form-control" value="@Model.SecondaryParticipant" data-live-search="true">
+                                                @foreach (var itemUser in Model.Users)
+                                                {
+                                                    <option class="col-xs-offset-3" name="SecondaryParticipant" value="@itemUser.UserId">@itemUser.FirstName</option>
+                                                }
+                                            </select>
+                                            @Html.Hidden("SecondaryValues")
+                                        </div>
+
+
+                                        @*extra field*@
+                                        <div class="form-group row dropdown-sin-2" style="visibility:hidden">
+                                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                                                End Time <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 ">
+                                                <input asp-for="EndTime" id="endTime" name="StartTime" class="form-control" />
+                                                <span asp-validation-for="EndTime" class="text-danger" />
+                                            </div>
+                                        </div>
+
+
+                                    }
+                                </div>
+
+
+                                <div id="step-4">
+                                    <div class="col-md-12 col-sm-12  ">
+                                        <div class="x_panel">
+                                            <div class="x_content">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped jambo_table bulk_action">
+                                                        <thead>
+                                                            <tr class="headings">
+                                                                <th></th>
+                                                                <th style="padding-left:0px;font-size:15px">Arrangement Name</th>
+                                                                <th style="padding-left:80px;font-size:15px">Description</th>
+                                                                <th style="padding-left:71px;font-size:15px">Delegate Contact </th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody id="VisitArrangement" name="VisitArrangement">
+                                                            @if (Model != null)
+                                                            {
+                                                                @for (int index = 0; Model.VisitArrangement.Count > index; index++)
+                                                                {
+                                                                    var id = "tr_" + @Model.VisitArrangement[index].ArrangementId;
+
+                                                                    <tr id="@id" name="Model.VisitArrangement">
+                                                                        <td>
+                                                                            <div class="form-group ">
+                                                                                <div class="fm-checkbox">
+
+                                                                                    @Html.HiddenFor(i => i.VisitArrangement[index].ArrangementId)
+                                                                                    @Html.CheckBoxFor(i => i.VisitArrangement[index].IsSelected, new { @id = "isSelected", style = "width:20px;height:20px" })
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            @*<div class="form-group col-xs-5">
+        <div class="nk-int-st">*@
+
+                                                                            @*@Html.DisplayFor(m => m.VisitArrangement[index].Name, new { @class = "form-control input-lg visitArrangements name" })*@
+                                                                            @Html.DisplayFor(m => m.VisitArrangement[index].Name, new { @class = "form-control input-lg visitArrangements name", @style = "font-size:10px" })
+
+                                                                            @*<span asp-for="@Model.VisitArrangement[index].Name" class="visitArrangements" id="name" style="font-size:medium;margin-top:40%;" name="@Model.VisitArrangement[index].Name">@Model.VisitArrangement[index].Name</span>
+
+        <span asp-validation-for="@Model.VisitArrangement[index].Name" class="text-danger"></span>*@
+                                                                            @*</div>
+        </div>*@
+                                                                        </td>
+                                                                        <td>
+
+                                                                            <div class="form-group">
+                                                                                @*<div class="nk-int-st">*@
+                                                                                    @if (Model.VisitArrangement[index].IsSelected)
+                                                                                    {
+                                                                                        @Html.TextBoxFor(m => m.VisitArrangement[index].Description, new { @class = "form-control input-lg visitArrangements", @id = "arrangmentsdescription" })
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        @Html.TextBoxFor(m => m.VisitArrangement[index].Description, new { @class = "form-control input-lg visitArrangements", @disabled = "disabled", @id = "arrangmentsdescription" })
+                                                                                    }
+                                                                                    <span asp-validation-for="@Model.VisitArrangement[index].Description" class="text-danger"></span>
+                                                                                @*</div>*@
+                                                                            </div>
+
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="form-group">
+                                                                                @*<div class="nk-int-st">*@
+                                                                                    @if (Model.VisitArrangement[index].IsSelected)
+                                                                                    {
+                                                                                        @Html.DropDownListFor(m => m.VisitArrangement[index].DelegateContactID, new SelectList(Model.Users, "UserId", "FirstName"), new { @class = "visitArrangements dropdownSearch", @id = "delegateContactID" })
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        @Html.DropDownListFor(m => m.VisitArrangement[index].DelegateContactID, new SelectList(Model.Users, "UserId", "FirstName"), new { @class = "visitArrangements dropdownSearch", @disabled = "disabled", @id = "delegateContactID" })
+
+                                                                                    }
+                                                                                @*</div>*@
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                }
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div id="step-5">
+                                    <div>
+                                        <div>
+                                            <div class="x_content">
+                                                <table class="table">
+                                                    <tr class="col-offset-4 " style="background-color:rgba(52,73,94,0.94); color:white; font-size:18px;">
+                                                        <td class=" headings ">
+                                                            Visitor Info
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b style="margin-left:0%">Visitor Name</b> 
+                                                            <input asp-for="VisitorName" name="VisitorName" id="visitorNameConfirmation" class="form-control" />
+                                                        </td>
+
+                                                        <td>
+                                                            <b style="margin-left:23%">Email Address</b>
+                                                            <input asp-for="EmailAddress" name="EmailAddress" id="emailConfirmation" class="form-control" style="margin-left:23%" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b style="margin-left:0%">Phone</b> 
+                                                            <input asp-for="Phone" name="Phone" id="phoneConfirmation" class="form-control" />
+                                                        </td>
+
+                                                        <td>
+                                                            <b style="margin-left:23%">Designation</b>
+                                                            <input asp-for="Designation" name="Designation" id="designationConfirmation" class="form-control" style="margin-left:23%" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b style="margin-left:0%">Company</b> 
+                                                            <input asp-for="Company" name="Company" class="form-control" id="companyConfirmation" />
+                                                        </td>
+                                                    </tr>
+
+                                                </table>
+
+
+                                                <table class="table">
+                                                    <tr class="col-offset-4 " style="background-color:rgba(52,73,94,0.94); color:white; font-size:18px;">
+                                                        <td class=" headings ">
+                                                            Visit Details
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b style="margin-left:0%">Visit Date</b>
+                                                            <input type="date" id="dateConfirmation" value="@DateTime.Now" asp-for="VisitingDate" class="form-control" style="width:450px" />
+                                                        </td>
+                                                        <td>
+                                                            <b style="margin-left:8%">Start Time</b>
+                                                            <input id="startTimeConfirmation" name="StartTime" asp-for="StartTime" class="form-control" style="width:180px;margin-left:8%" />
+                                                        </td>
+                                                        <td>
+                                                            <b style="margin-left:23%">End Time</b>
+                                                            <input id="endTimeConfirmation" name="EndTime" asp-for="EndTime" class="form-control" style="width:180px;margin-left:23%" />
+                                                        </td>
+                                                    </tr>
+                                                </table>
+
+
+                                                <table class="table">
+                                                    <tr class="col-offset-4 " style="background-color:rgba(52,73,94,0.94); color:white; font-size:18px;">
+                                                        <td class=" headings ">
+                                                            Contact Details
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <b style="margin-left:0%">Primary Contact</b><br>
+                                                            <input type="text" id="primaryContactConfirmation" class="form-control" />
+                                                        </td>
+                                                        <br>
+                                                        <td>
+                                                            <b style="margin-left:23%">Secondary Contact</b>
+                                                            <input type="text" id="secondaryContactConfirmation" class="form-control" style="margin-left:23%" />
+                                                        </td>
+                                                    </tr>
+                                                </table>
+
+
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr class="col-offset-4 " style="background-color:rgba(52,73,94,0.94); color:white; font-size:18px;">
+                                                            <td class=" headings ">
+                                                                Arrangements
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th style="padding-left:28px;font-size:15px">Arrangement Name</th>
+                                                            <th style="padding-left:68px;font-size:15px">Description</th>
+                                                            <th style="padding-left:9px;font-size:15px">Delegate Contact </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @if (Model != null)
+                                                        {
+                                                            @foreach (var item in Model.VisitArrangement)
+                                                            {
+                                                                var id = "finaltr_" + @item.ArrangementId;
+                                                                var chkid = "chkarrangment_" + @item.ArrangementId;
+                                                                var descid = "txtarrangdesc_" + @item.ArrangementId;
+                                                                var delegateid = "ddldelegatearrangid_" + @item.ArrangementId;
+                                                                var style = item.IsSelected == true ? "display:" : "display:none";
+                                                                <tr style="@style" id="@id">
+                                                                    <td style="width:2%">
+                                                                        <div class="form-group ">
+                                                                            <div class="fm-checkbox">
+                                                                                <input type="checkbox" disabled="disabled" asp-for="@item.IsSelected" id="@chkid" ; style="width:100px;height:20px" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td style="width:20%">
+                                                                        <div class="form-group col-xs-15">
+                                                                            <div class="nk-int-st">
+                                                                                <span asp-for="@item.Name" class="visitArrangements" id="name" style="font-size:medium;margin-top:40%;" name="@Model.VisitArrangement[0].Name">@item.Name</span>
+                                                                                <span asp-validation-for="@item.Name" class="text-danger"></span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td style="width:30%">
+                                                                        <div class="form-group col-xs-12">
+                                                                            <div class="nk-int-st">
+                                                                                <input asp-for="@item.Description" id="@descid" name="VisitArrangement.Description" class="form-control" disabled="disabled" />
+                                                                                <span asp-validation-for="@item.Description" class="text-danger"></span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td style="width:2%">
+                                                                        <div class="form-group">
+                                                                            <div class="nk-int-st">
+                                                                                <select class="delegateContactId" asp-for="@item.DelegateContactID" id="@delegateid" name="VisitArrangement.DelegateContactID" disabled="disabled">
+                                                                                    @foreach (var itemUser in Model.Users)
+                                                                                    {
+                                                                                        <option value="@itemUser.UserId">@itemUser.FirstName</option>
+                                                                                    }
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <br />
+                                            <br />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- End SmartWizard Content -->
+                    <!-- End SmartWizard Content -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<script>
+        $(document).ready(function () {
+            $('.mdb-select').materialSelect();
+        });
+    </script>*@
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+    if (dd < 10) { dd = '0' + dd; } if (mm < 10) { mm = '0' + mm; }
+    document.getElementById("visitingDate").min = yyyy + "-" + mm + "-" + dd;
+
+    function start() {
+        var endtime = document.getElementById('startTime').value;
+        var t1 = parseInt(endtime.slice(0, 2));
+        var t2 = endtime.slice(3, 5);
+        t1 = t1 + 1;
+        if (t1 < 10) {
+            t1 = '0' + t1;
+        }
+        if (t1 == 24) {
+            t1 = '00';
+        }
+        document.getElementById('endTime').value = '' + t1 + ':' + t2 + '';
+    }
+
+</script>
+
+    //function validate() {
+    //    var IsValidated = true;
+    //    if (document.getElementById("visitorName").value == "") {
+    //        document.getElementById("visitorName").classList.add('parsley-error');
+    //        //document.getElementById("vn").innerHTML = 'this feild is required';
+    //        IsValidated = false;
+    //    }
+    //    else {
+    //        document.getElementById("visitorName").classList.remove('parsley-error');
+    //        document.getElementById("vn").innerHTML = '';
+    //    }
+
+    //    if (document.getElementById("designation").value == "") {
+    //        document.getElementById("designation").classList.add('parsley-error');
+    //        //document.getElementById("dn").innerHTML = 'this feild is required';
+    //        IsValidated = false;
+    //    }
+    //    else {
+    //        document.getElementById("designation").classList.remove('parsley-error');
+    //        document.getElementById("dn").innerHTML = '';
+    //    }
+
+    //    if (document.getElementById("emailAddress").value == "") {
+    //        document.getElementById("emailAddress").classList.add('parsley-error');
+    //        document.getElementById("em").innerHTML = 'this feild is required';
+    //        IsValidated = false;
+    //    }
+    //    else {
+    //        document.getElementById("emailAddress").classList.remove('parsley-error');
+    //        document.getElementById("em").innerHTML = '';
+    //    }
+
+
+    //    if (document.getElementById("phone").value == "") {
+    //        document.getElementById("phone").classList.add('parsley-error');
+    //        document.getElementById("pn").innerHTML = 'this feild is required';
+    //        IsValidated = false;
+    //    }
+    //    else {
+    //        document.getElementById("phone").classList.remove('parsley-error');
+    //        document.getElementById("pn").innerHTML = '';
+    //    }
+
+
+    //    if (document.getElementById("company").value == "") {
+    //        document.getElementById("company").classList.add('parsley-error');
+    //        document.getElementById("cn").innerHTML = 'this feild is required';
+    //        IsValidated = false;
+    //    }
+    //    else {
+    //        document.getElementById("company").classList.remove('parsley-error');
+    //        document.getElementById("cn").innerHTML = '';
+    //    }
+    //    if (IsValidated == true) {
+    //        $(".buttonNext").removeClass("disabled");
+    //    }
+    //}
+
+@*</script>
+    <link rel="stylesheet" href="~/lib/bootstrap-multiselect.css" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    <script src="~/lib/bootstrap-multiselect.js"></script>
+
+    <script>
+        $('select[multiple]').multiselect({
+            columns: 3,
+            placeholder: 'Select options'
+        });
+    </script>*@
+
+<link rel="stylesheet" href="~/lib/bootstrap-multiselect.css" />
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<script src="~/lib/bootstrap-multiselect.js"></script>
+
+<script>
+    $('.dropdown-sin-2').dropdown({
+        input: '<input type="text" maxLength="20" placeholder="Search">'
+    });
+</script>
+
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+
+        // Initialize select2
+        $("#selUser").select2();
+
+        // Read selected option
+        $('#but_read').click(function () {
+            var username = $('#selUser option:selected').text();
+            var userid = $('#selUser').val();
+
+            $('#result').html("id : " + userid + ", name : " + username);
+
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+
+        // Initialize select2
+        $(".dropdownSearch").select2();
+
+        // Read selected option
+        $('#but_read').click(function () {
+            var username = $('#selUser option:selected').text();
+            var userid = $('#selUser').val();
+            $('#result').html("id : " + userid + ", name : " + username);
+        });
+    });
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="~/vendors/select2-develop/dist/css/select2.min.css" type="text/css" />
+<script src="~/vendors/select2-develop/dist/js/select2.min.js" type="text/javascript"></script>

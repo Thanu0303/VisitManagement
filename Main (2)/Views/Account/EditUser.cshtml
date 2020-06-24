@@ -1,0 +1,146 @@
+﻿@model VisitorManagement.DataAccess.Models.User
+
+@{
+    ViewData["Title"] = "EditUser";
+    Layout = "_Layout";
+}
+<style>
+    #show_password {
+        background-color: #73879C;
+        height: 38px;
+        width: 30px;
+        color: white;
+        padding: 7px 9px 0px 9px;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#show_password').hover(function show() {
+                //Change the attribute to text
+                $('#password').attr('type', 'text');
+                $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+            },
+            function () {
+                //Change the attribute back to password
+                $('#password').attr('type', 'password');
+                $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+            });
+        });
+</script>
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2> <i class="fa fa-edit fa-1x"></i> Edit User</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a class="dropdown-item" href="#">Settings 1</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form asp-action="EditUser" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="UserID" />
+
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="UserLogin">
+                                    User Login : <span class="required"></span>
+                                </label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="email" asp-for="UserLogin" name="UserLogin" required="required" class="form-control ">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="FirstName">
+                                    First Name : <span class="required"></span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="FirstName" id="first-name" required="required" class="form-control ">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="LastName">
+                                    Last Name : <span class="required"></span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="LastName" required="required" class="form-control ">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" style="height:40px;" asp-for="EmailAddress">
+                                    Email Address : <span class="required"></span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="email" asp-for="EmailAddress" name="EmailAddress" required="required" class="form-control ">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="Password">
+                                    Password : <span class="required"></span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 input-group">
+                                    @*<input type="text" asp-for="Password" id="first-name" required="required" class="form-control ">*@
+                                    <input type="password" asp-for="Password" id="password" required="required" class="form-control ">
+                                    <div class="input-group-append">
+                                        <a id="show_password">
+                                            <span class="fa fa-eye-slash icon"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-left:28%">
+                                <div class="item form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input asp-for="IsAdmin" class="flat" checked="checked" /> @Html.DisplayNameFor(model => model.IsAdmin)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="item form-group" style="margin-left:25%">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input asp-for="IsInactive" class="flat" /> @Html.DisplayNameFor(model => model.IsInactive)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ln_solid"></div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-7">
+                                    <input type="submit" value="Update" class="btn btn-dark" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

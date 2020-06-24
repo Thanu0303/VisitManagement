@@ -1,0 +1,93 @@
+﻿@model IEnumerable<VisitorManagement.DataAccess.ViewModel.ListVisitModel>
+
+    @{
+        ViewData["Title"] = "Index";
+        Layout = "_Layout";
+    }
+
+<p style="margin-left:90%">  
+   <a asp-action="Create" class="btn btn-default notika-btn-default">
+        <img src="~/images/Create.png" height="40px" width="40px" /> 
+    </a>
+</p>
+
+    <div class="breadcomb-area">
+        <div class="container">
+            <div class="breadcomb-list">
+                <div class="breadcomb-wp">
+                    <div class="breadcomb-icon">
+                        <i class="fa fa-users fa-2x"></i>
+                    </div>
+                    <div class="breadcomb-ctn"> </div>
+                    <div><h2 style="color:mediumseagreen"> &nbsp; List of Visitors </h2> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="data-table-list">
+                    <div class="table-responsive">
+                        <table id="data-table-basic" class="table table-striped" >
+                            <thead style="font-size:50px">
+                                <tr class="success" style="font-weight:bolder;">
+                                    <th style="width:20%"> Visitor Name</th>
+                                    <th style="width:20%"> Visitor Company</th>
+                                    <th style="width:20%"> Visit Designation </th>
+                                   
+                                    <th style="width:10%"> Meeting StartTime</th>
+                                    <th style="width:10%">Meeting EndTime</th>
+                                    <th class="text-center"> Actions </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.VisitorName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Company)
+
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Designation)
+                                    </td>
+                                    @*<td>
+                                        @Html.DisplayFor(modelItem => item.EmailAddress)
+                                    </td>*@
+                                   
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.StartTime.Value.TimeOfDay)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EndTime.Value.TimeOfDay)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.VisitorId" class="btn btn-dark">
+                                            <img src="~/images/Edits.png" height="20px" width="20px" />
+                                        </a>
+                                        <a asp-action="Details" asp-route-id="@item.VisitorId" class="btn btn-dark">
+                                            <img src="~/images/Details.png" height="20px" width="20px" />
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.VisitorId" class="btn btn-dark">
+                                            <img src="~/images/Deletes.png" height="20px" width="20px" />
+                                        </a>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr></tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

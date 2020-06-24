@@ -1,0 +1,83 @@
+﻿@model VisitorManagement.DataAccess.ViewModel.LoginViewModel;
+@{
+    ViewData["Title"] = "Login";
+    Layout = "";
+}
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Meta, title, CSS, favicons, etc. -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> Visitor Management </title>
+<!-- Bootstrap -->
+<link href="~/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome -->
+<link href="~/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<!-- NProgress -->
+<link href="~/vendors/nprogress/nprogress.css" rel="stylesheet">
+<!-- Animate.css -->
+<link href="~/vendors/animate.css/animate.min.css" rel="stylesheet">
+<!-- Custom Theme Style -->
+<link href="~/build/css/custom.min.css" rel="stylesheet">
+
+<body class="login" style="line-height:0.471">
+    <div>
+        <a class="hiddenanchor" id="signup"></a>
+        <a class="hiddenanchor" id="signin"></a>
+        <div class="login_wrapper">
+            <div class="animate form login_form">
+                <section class="login_content" style="font-size:14px;">
+                    <form asp-action="Login" asp-controller="Account" method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                        <h1 style="margin: 10px 0 22px;">
+                            <img src="~/images/blueblack-01.png" height="35" width="40" />
+                            Canarys Automations
+                        </h1>
+                        <div class="item form-group">
+                            <div class="col-md-12">
+                                <input type="email" asp-for="UserLogin" class="form-control" required="required" placeholder="Email Address :" />
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            <div class="col-md-12">
+                                <input type="password" asp-for="Password" class="form-control" required="" placeholder="Password :">
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-dark" style="margin-left:3%"><span style="color:white;"> Log In </span> </button>
+                        </div>
+                        <div class="clearfix mb-2"></div>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                     
+                    </form>                    
+                </section>
+            </div>
+
+        </div>
+    </div>
+</body>
+<!-- Login Register area End-->
+
+<!-- jquery
+       ============================================ -->
+<!-- jQuery -->
+<script src="~/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="~/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<!-- FastClick -->
+<script src="~/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="~/vendors/nprogress/nprogress.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="~/build/js/custom.min.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="~/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- bootstrap-wysiwyg -->
+<script src="~/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+<script src="~/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+<script src="~/vendors/google-code-prettify/src/prettify.js"></script>
+<!-- jQuery Tags Input -->
+<script src="~/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+<!-- Parsley -->
+<script src="~/vendors/parsleyjs/dist/parsley.min.js"></script>

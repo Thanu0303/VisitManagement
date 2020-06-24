@@ -1,0 +1,212 @@
+﻿@model VisitorManagement.DataAccess.ViewModel.ListVisitModel;
+
+<style>
+    th, td {
+        text-align: left;
+        padding: 10px;
+    }
+</style>
+
+@*style="border: 1px solid rgba(52,73,94,0.94);
+
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        margin-top: 10px"*@
+
+<div>
+    <div>
+
+        @{string photo = "data: image/jpeg;base64," + Model.visit.PhotoUrl;}
+        <img style="width:100px;height:100px;border-radius:20px; margin-left:45%;" class="mt-2 mb-2" src="@photo" />
+        <div>
+            <table class="table " style="margin-right:50%;">
+
+                <tr style="background-color:rgba(52,73,94,0.94); color:white; font-size:15px; height:18px; ">
+                    <td class="headings">
+                        <b> Visitor Info </b>
+                    </td>
+                    <td></td>
+                    <td></td>
+
+                    <td></td>
+
+                </tr>
+                <tr>
+                    <td><b>Visitor Name</b></td>
+                    <td>@Model.visit.VisitorName </td>
+                    <td><b>Designation</b></td>
+                    <td>@Model.visit.Designation</td>
+                </tr>
+
+                <tr style="padding:10px">
+                    <td><b>Company</b></td>
+                    <td>@Model.visit.Company</td>
+                    <td><b>Email</b></td>
+                    <td> @Model.visit.EmailAddress</td>
+                </tr>
+                <tr style="padding:10px">
+                    <td><b>Phone</b></td>
+                    <td>@Model.visit.Phone</td>
+                    <td><b>Create Date</b></td>
+                    <td>@Model.visit.CreatedDate</td>
+                </tr>
+
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+    <div class="body">
+
+
+        <table class="table ">
+            <tr class="col-offset-2" style=" background-color: rgba(52,73,94,0.94); color: white; font-size: 15px; height: 18px;">
+                <td class=" headings ">
+                    <b> Visit Details </b>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td><b>Start Time </b></td>
+                <td> @string.Format("{0:hh:mm tt}", Model.detail.StartTime)</td>
+                <td><b>End Time</b></td>
+                <td> @string.Format("{0:hh:mm tt}", Model.detail.EndTime)</td>
+            </tr>
+
+            <tr>
+                <td><b>Actual Time In</b></td>
+                <td>
+                    @if (Model.detail.ActualTimeIn == null)
+                    {
+                        @string.Format("--:--")
+
+                    }
+                    else
+                    {
+                        @string.Format("{0:hh:mm tt}", Model.detail.ActualTimeIn)
+                    }
+                </td>
+
+
+                <td><b>Actual Time Out</b></td>
+                <td>
+                    @if (Model.detail.ActualTimeOut == null)
+                    {
+                        @string.Format("--:--")
+
+                    }
+                    else
+                    {
+                        @string.Format("{0:hh:mm tt}", Model.detail.ActualTimeOut)
+                    }
+
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+
+
+
+
+    @if (Model.participant != null)
+    {
+
+
+        <div class="body">
+
+
+            <table class="table">
+
+                <tr class="col-offset-2" style=" background-color: rgba(52,73,94,0.94);color: white;font-size: 15px; height: 18px;">
+                    <td class=" headings ">
+                        <b>   Visit Arrangement </b>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Name </th>
+                    <th>Description</th>
+                    <th>Delegate Name</th>
+                </tr>
+                @for (int i = 0; i < Model.arrangementsList.Count; i++)
+                {
+                    <tr>
+                        <td>@Model.arrangementsList[i].Name</td>
+                        <td>@Model.VisitArrangementsList[i].Description</td>
+                        <td title="@Model.VisitArrangementsList[i].EmailAddress">@Model.VisitArrangementsList[i].FirstName  @Model.VisitArrangementsList[i].LastName</td>
+
+                    </tr>
+                }
+            </table>
+        </div>
+
+
+
+    }
+
+
+
+    @if (Model.participant != null)
+    {
+
+
+
+        <div class="body">
+
+            <table class="table ">
+                <tr class="col-offset-2" style="background-color: rgba(52,73,94,0.94); color: white;font-size: 15px;height: 18px;">
+                    <td class="headings">
+                        <b>  Participants Details </b>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Participant Name </th>
+                    <th>Type</th>
+                </tr>
+                @for (int i = 0; i < Model.participant.Count; i++)
+                {
+                    <tr>
+                        <td title="@Model.participant[i].EmailAddress">@Model.participant[i].FirstName @Model.participant[i].LastName</td>
+                        @if (Model.participant[i].IsPrimary == true)
+                        {
+                            <td>Primary Participant</td>
+                        }
+                        @if (Model.participant[i].IsPrimary == false)
+                        {
+                            <td>Secondary Participant</td>
+                        }
+                    </tr>
+                }
+            </table>
+
+        </div>
+
+
+
+    }
+
+
+
+</div>
+
+
+
+
+
+
